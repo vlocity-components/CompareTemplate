@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="hpCompare">
+
+<head>
+    <meta charset="utf-8">
+    <title>HP Compare</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="js/controllers.js"></script>
+    <link rel="stylesheet" href="via_design/css/vlocity.css">
+    <link rel="stylesheet" href="css/HPCompare.css" />
+</head>
+
+<body class="vlocity" ng-controller="hpCompareController">
+    <div class="container">
+        <div class="left-col" ng-repeat="product in products.TFDRresp.output track by product.ID">
+            <h1>{{product.ProductName}}</h1>
+            <p ng-repeat="(key, val) in product.attributes | groupBy: 'categoryName'">
+                <strong>{{key}}</strong><br>
+                <span ng-repeat="prod in val">{{prod.name}}, </span>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

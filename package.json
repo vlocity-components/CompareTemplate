@@ -1,0 +1,34 @@
+{
+  "name": "robert_vlc_dev",
+  "version": "0.1.0",
+  "description": "Use for quick SASS/CSS development",
+  "namespace": "Vlocity",
+  "module": "Local",
+  "homepage": "http://www.vlocity.com",
+  "bugs": "rhenderson@vlocity.com",
+  "author": {
+    "name": "Robert Henderson, Vlocity, Inc.",
+    "email": "rhenderson@vlocity.com",
+    "twitter": "roberthenderson",
+    "url": "http://www.orangemuse.com",
+    "copyright": "Copyright © 2015 Vlocity, Inc."
+  },
+  "keywords": [
+    "grunt",
+    "sass"
+  ],
+  "devDependencies": {
+    "angular": "^1.3.17",
+    "angular-filter": "^0.5.4",
+    "autoprefixer-core": "*",
+    "csswring": "*",
+    "grunt": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-postcss": "*"
+  },
+  "dependencies": {
+    "load-grunt-tasks": "*"
+  }
+}
