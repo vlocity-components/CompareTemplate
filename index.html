@@ -1,26 +1,44 @@
 <!doctype html>
-<html lang="en" ng-app="hpCompare">
+<html lang="en" ng-app="compare">
 
 <head>
     <meta charset="utf-8">
     <title>HP Compare</title>
     <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-filter/dist/angular-filter.min.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
     <script src="js/controllers.js"></script>
     <link rel="stylesheet" href="via_design/css/vlocity.css">
-    <link rel="stylesheet" href="css/HPCompare.css" />
+    <link rel="stylesheet" href="css/CompareTemplate.css" />
 </head>
 
-<body class="vlocity" ng-controller="hpCompareController">
+<body class="vlocity" ng-controller="compareController">
     <div class="container">
-        <div class="left-col" ng-repeat="product in products.TFDRresp.output track by product.ID">
-            <h1>{{product.ProductName}}</h1>
-            <p ng-repeat="(key, val) in product.attributes | groupBy: 'categoryName'">
-                <strong>{{key}}</strong><br>
-                <span ng-repeat="prod in val">{{prod.name}}, </span>
-            </p>
+        <div>
+            <select ng-model="selectedCC" class="form-control" ng-options="category for category in  categoryList" ng-change="selectedItemChanged(selectedCC)" style="width: 144px">
+                <option value="">All</option>
+            </select>
         </div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th style="width:200px; vertical-align: middle">Category</th>
+                    <th align="center" style="white-space: normal; vertical-align: middle" ng-repeat="product in productList">{{product.name}}</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
+                <tr>
+                    <td valign="top" style="width:200px" ng-attr-colspan="{{productList.length + 1}}">
+                        <h2>{{category}}</h2>
+                    </td>
+                </tr>
+                <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
+                    <td>{{key}}</td>
+                    <td valign="top" style="width:200px" ng-repeat="product in productList track by $index">
+                        {{attributesValueForProduct(product.code,category,key) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 
