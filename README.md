@@ -10,4 +10,4 @@ Compare Template for Omniscript.
 - Run `grunt` and you'll see the terminal say "Watching..."
 - Then go to http://localhost:8000
 
-All HTML is in index.html and the JSON object is in an angular controller in js/controller.js
+All HTML is in index.html and the angular is handled in js/controllers.js
