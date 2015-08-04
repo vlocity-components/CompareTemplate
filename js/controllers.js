@@ -4,11 +4,7 @@
 
 var compare = angular.module("compare", ['ui.bootstrap']);
 
-compare.controller("compareController", function($scope) {
-    $scope.name = 'Supreeth';
-    $scope.categoryList = [];
-    $scope.categoryMap = {};
-    $scope.productList = [];
+compare.controller("compareController", function($scope, $modal, $log) {
     $scope.productsJSON = {
         "TFDRresp": {
             "output": [{
@@ -120,12 +116,38 @@ compare.controller("compareController", function($scope) {
         "error": "OK"
     };
 
+    $scope.open = function(size) {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: size,
+            resolve: {
+                content: function() {
+                    return $scope.productsJSON;
+                }
+            }
+        });
+
+        modalInstance.result.then(function(selectedItem) {
+            $scope.selected = selectedItem;            
+        }, function() {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+});
+
+compare.controller('ModalInstanceCtrl', function($scope, $modalInstance, content) {
+    $scope.categoryList = [];
+    $scope.categoryMap = {};
+    $scope.productList = [];
+
     $scope.attributesValueForProduct = function(productCode, categoryCode, attributeName) {
         return $scope.categoryMap[categoryCode]['attributes'][attributeName]['assignmentValues'][productCode];
     }
 
     $scope.transformData = function() {
-        var products = $scope.productsJSON['TFDRresp']['output'];
+        var products = content['TFDRresp']['output'];
         for (var i = 0; i < products.length; i++) {
             var productAttributes = products[i];
             var product = {};
@@ -177,4 +199,8 @@ compare.controller("compareController", function($scope) {
     }
 
     $scope.transformData();
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    };
 });

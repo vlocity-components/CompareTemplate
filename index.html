@@ -5,41 +5,53 @@
     <meta charset="utf-8">
     <title>HP Compare</title>
     <script src="node_modules/angular/angular.min.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="js/controllers.js"></script>
-    <link rel="stylesheet" href="via_design/css/vlocity.css">
+    <link rel="stylesheet" href="via_design/css/vlocity.css" />
     <link rel="stylesheet" href="css/CompareTemplate.css" />
 </head>
 
 <body class="vlocity" ng-controller="compareController">
     <div class="container">
-        <div>
-            <select ng-model="selectedCC" class="form-control" ng-options="category for category in  categoryList" ng-change="selectedItemChanged(selectedCC)" style="width: 144px">
-                <option value="">All</option>
-            </select>
-        </div>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th style="width:200px; vertical-align: middle">Category</th>
-                    <th align="center" style="white-space: normal; vertical-align: middle" ng-repeat="product in productList">{{product.name}}</th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
-                <tr>
-                    <td valign="top" style="width:200px" ng-attr-colspan="{{productList.length + 1}}">
-                        <h2>{{category}}</h2>
-                    </td>
-                </tr>
-                <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
-                    <td>{{key}}</td>
-                    <td valign="top" style="width:200px" ng-repeat="product in productList track by $index">
-                        {{attributesValueForProduct(product.code,category,key) }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <button class="btn btn-default" ng-click="open('lg')">Compare</button>
     </div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header form-inline">
+            <div class="form-group">
+                <label for="compareSelect" class="modal-title">Compare Plans</label>
+                <select id="compareSelect" ng-model="selectedCC" class="form-control" ng-options="category for category in categoryList" ng-change="selectedItemChanged(selectedCC)">
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th ng-repeat="product in productList">{{product.name}}</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
+                    <tr>
+                        <td ng-attr-colspan="{{productList.length + 1}}">
+                            <h2>{{category}}</h2>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
+                        <td>{{key}}</td>
+                        <td ng-repeat="product in productList track by $index">
+                            {{attributesValueForProduct(product.code,category,key) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
 </body>
 
 </html>
