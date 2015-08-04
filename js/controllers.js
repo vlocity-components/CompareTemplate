@@ -137,8 +137,8 @@ compare.controller("compareController", function($scope, $modal, $log) {
     $scope.open = function(size) {
 
         var modalInstance = $modal.open({
-            templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
+            templateUrl: 'CompareModalTemplate.html',
+            controller: 'CompareModalCtrl',
             size: size,
             resolve: {
                 content: function() {
@@ -155,7 +155,7 @@ compare.controller("compareController", function($scope, $modal, $log) {
     };
 });
 
-compare.controller('ModalInstanceCtrl', function($scope, $modalInstance, content) {
+compare.controller('CompareModalCtrl', function($scope, $modalInstance, content) {
     $scope.categoryList = [];
     $scope.categoryMap = {};
     $scope.productList = [];
