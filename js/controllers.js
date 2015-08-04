@@ -11,26 +11,32 @@ compare.controller("compareController", function($scope, $modal, $log) {
                 "attributes": [{
                     "categoryName": "Deductible",
                     "value": "4000",
+                    "dataType": "Currency",
                     "name": "Annual Deductible"
                 }, {
                     "categoryName": "Deductible",
                     "value": "medical deductible",
+                    "dataType": "Text",
                     "name": "Prescription Drug Deductible"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "30",
+                    "dataType": "Currency",
                     "name": "Primary Care Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "40",
+                    "dataType": "Currency",
                     "name": "Speciality Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "45",
+                    "dataType": "Currency",
                     "name": "Non-Physican Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "45",
+                    "dataType": "Currency",
                     "name": "Another Name"
                 }],
                 "NumDays": "1",
@@ -47,26 +53,32 @@ compare.controller("compareController", function($scope, $modal, $log) {
                 "attributes": [{
                     "categoryName": "Deductible",
                     "value": "5000",
+                    "dataType": "Currency",
                     "name": "Annual Deductible"
                 }, {
                     "categoryName": "Deductible",
                     "value": "medical deductible",
+                    "dataType": "Text",
                     "name": "Prescription Drug Deductible"
                 }, {
                     "categoryName": "Deductible",
                     "value": "medical deductible",
+                    "dataType": "Text",
                     "name": "Another Type of Deductible"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "30",
+                    "dataType": "Currency",
                     "name": "Primary Care Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "40",
+                    "dataType": "Currency",
                     "name": "Speciality Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "45",
+                    "dataType": "Currency",
                     "name": "Non-Physican Office Visit"
                 }],
                 "NumDays": "1",
@@ -83,22 +95,27 @@ compare.controller("compareController", function($scope, $modal, $log) {
                 "attributes": [{
                     "categoryName": "Deductible",
                     "value": "6000",
+                    "dataType": "Currency",
                     "name": "Annual Deductible"
                 }, {
                     "categoryName": "Deductible",
                     "value": "medical deductible",
+                    "dataType": "Text",
                     "name": "Prescription Drug Deductible"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "30",
+                    "dataType": "Percent",
                     "name": "Primary Care Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "40",
+                    "dataType": "Percent",
                     "name": "Speciality Office Visit"
                 }, {
                     "categoryName": "Preventive Care",
                     "value": "45",
+                    "dataType": "Percent",
                     "name": "Non-Physican Office Visit"
                 }],
                 "NumDays": "1",
@@ -113,7 +130,8 @@ compare.controller("compareController", function($scope, $modal, $log) {
                 "ID": "2"
             }]
         },
-        "error": "OK"
+        "error": "OK",
+        "currencySymbol": "€"
     };
 
     $scope.open = function(size) {
@@ -141,6 +159,7 @@ compare.controller('ModalInstanceCtrl', function($scope, $modalInstance, content
     $scope.categoryList = [];
     $scope.categoryMap = {};
     $scope.productList = [];
+    $scope.currencySymbol = content.currencySymbol;
 
     $scope.attributesValueForProduct = function(productCode, categoryCode, attributeName) {
         return $scope.categoryMap[categoryCode]['attributes'][attributeName]['assignmentValues'][productCode];
@@ -161,12 +180,13 @@ compare.controller('ModalInstanceCtrl', function($scope, $modalInstance, content
                 var categoryName = attributeAssignment['categoryName'];
                 var attributeName = attributeAssignment['name'];
                 var attributeValue = attributeAssignment['value'];
+                var attributeDataType = attributeAssignment['dataType'];
 
                 if ($scope.categoryMap[categoryName] == null) {
                     $scope.categoryList.push(categoryName);
                     var attributeMap = {};
                     var productAssignmentMap = {};
-                    productAssignmentMap[product['code']] = attributeValue;
+                    productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
                     attributeMap['assignmentValues'] = productAssignmentMap;
                     attributeMap['name'] = attributeName;
                     $scope.categoryMap[categoryName] = {};
@@ -176,11 +196,11 @@ compare.controller('ModalInstanceCtrl', function($scope, $modalInstance, content
                     var attributeMap = $scope.categoryMap[categoryName]['attributes'][attributeName];
                     if (attributeMap != null) {
                         var productAssignmentMap = attributeMap['assignmentValues'];
-                        productAssignmentMap[product['code']] = attributeValue;
+                        productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
                     } else {
                         attributeMap = {};
                         var productAssignmentMap = {};
-                        productAssignmentMap[product['code']] = attributeValue;
+                        productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
                         attributeMap['assignmentValues'] = productAssignmentMap;
                         attributeMap['name'] = attributeName;
                         $scope.categoryMap[categoryName]['attributes'][attributeName] = attributeMap;

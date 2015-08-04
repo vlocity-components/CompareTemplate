@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/CompareTemplate.css" />
 </head>
 
-<body class="vlocity" ng-controller="compareController">
+<body class="vlocity hphc" ng-controller="compareController">
     <div class="container">
         <button class="btn btn-default" ng-click="open('lg')">Compare</button>
     </div>
@@ -24,32 +24,33 @@
                     <option value="">All</option>
                 </select>
             </div>
+            <i class="icon icon-v-close-circle-line pull-right" ng-click="cancel()"></i>
         </div>
         <div class="modal-body">
+            <div class="table-wrapper">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Category</th>
-                        <th ng-repeat="product in productList">{{product.name}}</th>
+                        <th></th>
+                        <th ng-repeat="product in productList"><h2>{{product.name}}</h2></th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
-                    <tr>
+                    <tr class="attr-category">
                         <td ng-attr-colspan="{{productList.length + 1}}">
-                            <h2>{{category}}</h2>
+                            <h3>{{category}}</h3>
                         </td>
                     </tr>
                     <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
                         <td>{{key}}</td>
-                        <td ng-repeat="product in productList track by $index">
-                            {{attributesValueForProduct(product.code,category,key) }}
+                        <td ng-repeat="product in productList track by $index" class="{{attributesValueForProduct(product.code,category,key).dataType.toLowerCase()}}" ng-class="{'no-currency-symbol': !currencySymbol}">
+                            <span ng-if="attributesValueForProduct(product.code,category,key).dataType === 'Currency' && currencySymbol" class="currency-symbol">{{currencySymbol}}</span>
+                            <span>{{attributesValueForProduct(product.code,category,key).value }}</span>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
         </div>
     </script>
 </body>
