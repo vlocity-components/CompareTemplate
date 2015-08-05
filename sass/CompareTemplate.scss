@@ -133,24 +133,34 @@
 
                     &.currency {
                         &.no-currency-symbol {
-                            &:before {
-                                content: "$";
-                                display: inline;
-                            }
+                            span.value {
+                                &:before {
+                                    content: "$";
+                                    display: inline;
+                                    position: relative;
+                                    left: 3px;
+                                }
+                            }                            
                         }
 
                         .currency-symbol {
                             position: relative;
                             left: 3px;
                         }
+
+                        span.value {
+                            padding-right: 5px;
+                        }
                     }
 
                     &.percent {
-                        &:after {
-                            content: "%";
-                            display: inline;
-                            position: relative;
-                            left: -3px;
+                        span.value {
+                            &:after {
+                                content: "%";
+                                display: inline;
+                                position: relative;
+                                left: -3px;
+                            }
                         }
                     }
                 }

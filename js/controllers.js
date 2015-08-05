@@ -20,7 +20,7 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
             }, {
                 "categoryName": "Preventive Care",
                 "value": "30",
-                "dataType": "Currency",
+                "dataType": "Percent",
                 "name": "Primary Care Office Visit"
             }, {
                 "categoryName": "Preventive Care",
@@ -129,7 +129,7 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
             "ID": "2"
         }],
         "error": "OK",
-        "currencySymbol": "€"
+        "currencyCode": "USD"
     };
 
     $scope.open = function(size) {
@@ -157,11 +157,32 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
     $scope.categoryList = [];
     $scope.categoryMap = {};
     $scope.productList = [];
-    $scope.currencySymbol = content.currencySymbol;
+    $scope.currencySymbol = "";
+    $scope.currencyCode = content.currencyCode;
+    $scope.currencyMap = [
+        {"USD": "$"},
+        {"CAD": "$"},
+        {"EUR": "€"},
+        {"GBP": "£"},
+        {"JPY": "¥"},
+        {"KRW": "₩"},
+        {"CNY": "元"}
+    ];
+
+    $scope.getCurrencySymbol = function(code) {
+        var currencySymbol = "";
+        $scope.currencyMap.forEach(function(item) {
+            if(item[code] !== undefined) {
+                currencySymbol = item[code];
+            }
+        });
+        return currencySymbol;
+    };
+    $scope.currencySymbol = $scope.getCurrencySymbol($scope.currencyCode);
 
     $scope.attributesValueForProduct = function(productCode, categoryCode, attributeName) {
         return $scope.categoryMap[categoryCode]['attributes'][attributeName]['assignmentValues'][productCode];
-    }
+    };
 
     $scope.transformData = function() {
         var products = content['recSet'];
@@ -206,15 +227,15 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
                 }
             }
         }
-    }
+    };
 
     $scope.showCategory = function(category) {
         return ($scope.filteredCategory == null || category == $scope.filteredCategory);
-    }
+    };
 
     $scope.selectedItemChanged = function(code) {
         $scope.filteredCategory = code;
-    }
+    };
 
     $scope.transformData();
 

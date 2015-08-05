@@ -45,9 +45,11 @@
                         </tr>
                         <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
                             <td>{{key}}</td>
-                            <td ng-repeat="product in productList track by $index" class="{{attributesValueForProduct(product.code,category,key).dataType.toLowerCase()}}" ng-class="{'no-currency-symbol': !currencySymbol}">
-                                <span ng-if="attributesValueForProduct(product.code,category,key).dataType === 'Currency' && currencySymbol" class="currency-symbol">{{currencySymbol}}</span>
-                                <span>{{attributesValueForProduct(product.code,category,key).value }}</span>
+                            <td ng-repeat="product in productList track by $index" class="{{attributesValueForProduct(product.code,category,key).dataType.toLowerCase()}}" ng-class="{'no-currency-symbol': !currencyCode}">
+                                <span class="value">
+                                    <span ng-if="attributesValueForProduct(product.code,category,key).dataType === 'Currency' && currencyCode" class="currency-symbol">{{currencySymbol}}</span>
+                                    {{attributesValueForProduct(product.code,category,key).value }}
+                                </span>
                             </td>
                         </tr>
                     </tbody>
