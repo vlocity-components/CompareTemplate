@@ -6,130 +6,128 @@ var bpModule = angular.module("compare", ['ui.bootstrap']);
 
 bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.productsJSON = {
-        "TFDRresp": {
-            "output": [{
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "4000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Currency",
-                    "name": "Primary Care Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Currency",
-                    "name": "Speciality Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Non-Physican Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Another Name"
-                }],
-                "NumDays": "1",
-                "ProductName": "HMO 200",
-                "ProductRecommend": "true",
-                "ProductCode": "TI-AI",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "26.8",
-                "ChildPrice": "3.4",
-                "AdultPrice": "7.5",
-                "ID": "0"
+        "recSet": [{
+            "attributes": [{
+                "categoryName": "Deductible",
+                "value": "4000",
+                "dataType": "Currency",
+                "name": "Annual Deductible"
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "5000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Another Type of Deductible"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Currency",
-                    "name": "Primary Care Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Currency",
-                    "name": "Speciality Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Non-Physican Office Visit"
-                }],
-                "NumDays": "1",
-                "ProductName": "HMO 250",
-                "ProductRecommend": "false",
-                "ProductCode": "TI-EM",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "12.9",
-                "ChildPrice": "1.2",
-                "AdultPrice": "2.75",
-                "ID": "1"
+                "categoryName": "Deductible",
+                "value": "medical deductible",
+                "dataType": "Text",
+                "name": "Prescription Drug Deductible"
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "6000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Percent",
-                    "name": "Primary Care Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Percent",
-                    "name": "Speciality Office Visit"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Percent",
-                    "name": "Non-Physican Office Visit"
-                }],
-                "NumDays": "1",
-                "ProductName": "HMO 500",
-                "ProductRecommend": "false",
-                "ProductCode": "TI-NE",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "10.1",
-                "ChildPrice": "0.8",
-                "AdultPrice": "1.75",
-                "ID": "2"
-            }]
-        },
+                "categoryName": "Preventive Care",
+                "value": "30",
+                "dataType": "Currency",
+                "name": "Primary Care Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "40",
+                "dataType": "Currency",
+                "name": "Speciality Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "45",
+                "dataType": "Currency",
+                "name": "Non-Physican Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "45",
+                "dataType": "Currency",
+                "name": "Another Name"
+            }],
+            "NumDays": "1",
+            "ProductName": "HMO 200",
+            "ProductRecommend": "true",
+            "ProductCode": "TI-AI",
+            "NumChildren": "2",
+            "NumAdults": "2",
+            "TotalPrice": "26.8",
+            "ChildPrice": "3.4",
+            "AdultPrice": "7.5",
+            "ID": "0"
+        }, {
+            "attributes": [{
+                "categoryName": "Deductible",
+                "value": "5000",
+                "dataType": "Currency",
+                "name": "Annual Deductible"
+            }, {
+                "categoryName": "Deductible",
+                "value": "medical deductible",
+                "dataType": "Text",
+                "name": "Prescription Drug Deductible"
+            }, {
+                "categoryName": "Deductible",
+                "value": "medical deductible",
+                "dataType": "Text",
+                "name": "Another Type of Deductible"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "30",
+                "dataType": "Currency",
+                "name": "Primary Care Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "40",
+                "dataType": "Currency",
+                "name": "Speciality Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "45",
+                "dataType": "Currency",
+                "name": "Non-Physican Office Visit"
+            }],
+            "NumDays": "1",
+            "ProductName": "HMO 250",
+            "ProductRecommend": "false",
+            "ProductCode": "TI-EM",
+            "NumChildren": "2",
+            "NumAdults": "2",
+            "TotalPrice": "12.9",
+            "ChildPrice": "1.2",
+            "AdultPrice": "2.75",
+            "ID": "1"
+        }, {
+            "attributes": [{
+                "categoryName": "Deductible",
+                "value": "6000",
+                "dataType": "Currency",
+                "name": "Annual Deductible"
+            }, {
+                "categoryName": "Deductible",
+                "value": "medical deductible",
+                "dataType": "Text",
+                "name": "Prescription Drug Deductible"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "30",
+                "dataType": "Percent",
+                "name": "Primary Care Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "40",
+                "dataType": "Percent",
+                "name": "Speciality Office Visit"
+            }, {
+                "categoryName": "Preventive Care",
+                "value": "45",
+                "dataType": "Percent",
+                "name": "Non-Physican Office Visit"
+            }],
+            "NumDays": "1",
+            "ProductName": "HMO 500",
+            "ProductRecommend": "false",
+            "ProductCode": "TI-NE",
+            "NumChildren": "2",
+            "NumAdults": "2",
+            "TotalPrice": "10.1",
+            "ChildPrice": "0.8",
+            "AdultPrice": "1.75",
+            "ID": "2"
+        }],
         "error": "OK",
         "currencySymbol": "€"
     };
@@ -166,7 +164,7 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
     }
 
     $scope.transformData = function() {
-        var products = content['TFDRresp']['output'];
+        var products = content['recSet'];
         for (var i = 0; i < products.length; i++) {
             var productAttributes = products[i];
             var product = {};

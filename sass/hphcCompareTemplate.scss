@@ -2,7 +2,7 @@
 @import "mixins/clearfix";
 @import "mixins/compare-styles";
 
-.vlcCompareModal {
+.vlocity.vlcCompareModal {
     &.hphc {
         @include compareStyles($hphc-font-regular, $hphc-modal-bg, $hphc-icon-color, $hphc-outer-border, $hphc-inner-border);
     }
