@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-var compare = angular.module("compare", ['ui.bootstrap']);
+var bpModule = angular.module("compare", ['ui.bootstrap']);
 
-compare.controller("compareController", function($scope, $modal, $log) {
+bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.productsJSON = {
         "TFDRresp": {
             "output": [{
@@ -137,7 +137,7 @@ compare.controller("compareController", function($scope, $modal, $log) {
     $scope.open = function(size) {
 
         var modalInstance = $modal.open({
-            templateUrl: 'CompareModalTemplate.html',
+            templateUrl: 'vlcCompareModal.html',
             controller: 'CompareModalCtrl',
             size: size,
             resolve: {
@@ -155,7 +155,7 @@ compare.controller("compareController", function($scope, $modal, $log) {
     };
 });
 
-compare.controller('CompareModalCtrl', function($scope, $modalInstance, content) {
+bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content) {
     $scope.categoryList = [];
     $scope.categoryMap = {};
     $scope.productList = [];

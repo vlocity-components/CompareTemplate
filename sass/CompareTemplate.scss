@@ -1,118 +1,17 @@
-/*** VARIABLES ***/
-    $black: #000000;
-    $white: #FFFFFF;
-
-    $dark-gray: #7c7c7c;
-    $text-gray: #9999a7;
-    $middle-dark-gray: #c7c7c7;
-    $mid-gray: #d8d8d8;
-    $middle-light-gray: #dedede;
-    $light-gray: #f2f2f2;
-    $lightest-gray: #f8f8f8;
-
-    $dark-blue: #008ab3;
-    $light-blue: #05a6df;
-
-    $warning: #eac438;
-    $success: #58a300;
-    $error: #f65327;
-
-    $font-family: Arial, sans-serif;
-    $font-size: 11px;
-    $line-height: 18px;
-    $font-thin: normal 100 11px/18px $font-family;
-    $font-light: normal 300 11px/18px $font-family;
-    $font-regular: normal 400 11px/18px $font-family;
-    $font-semibold: normal 600 11px/18px $font-family;
-
-    // HPHC Specific Variables
-    $hphc-font-regular: normal 400 11px/18px Verdana, Arial, sans-serif;
-    $hphc-modal-bg: #eeede5;
-    $hphc-icon-color: #f8771e;
-    $hphc-outer-border: #cbcac3;
-    $hphc-inner-border: #e6e6e7;
-
-/*** MIXINS ***/
-    @mixin clearfix {
-        &:before, &:after {
-            content: " "; // 1
-            display: table; // 2
-        }
-        &:after {
-            clear: both;
-        }
-    }
-
-    @mixin compareStyles(
-        $font: $font-regular, 
-        $modal-bg: $light-gray, 
-        $icon-color: $light-blue, 
-        $outer-border: $middle-dark-gray, 
-        $inner-border: $middle-light-gray) 
-    {
-        * {
-            font: $font;
-        }
-
-        .modal-content {
-            background: $modal-bg;
-        }
-
-        .modal-header {
-            background: $modal-bg;
-
-            i.icon {
-                color: $icon-color;
-
-                &:hover {
-                    color: darken($icon-color, 7%);
-                }
-            }
-        }
-
-        .table-wrapper {
-            border: 1px solid $outer-border;
-        }
-
-        table.table {
-            thead {
-                tr {
-                    th {
-                        border-color: $inner-border;
-                    }
-                }
-            }
-            tbody {
-                tr {
-                    &.attr-category {
-                        td {
-                            background: $modal-bg;
-                        }
-                    }
-
-                    td {
-                        border-color: $inner-border;
-                    }
-                }
-            }            
-        }
-
-        label.modal-title, h2 {
-            font-size: 16px;
-            font-weight: bold;
-            color: #000;
-            line-height: 28px;        
-        }
-
-        h3 {
-            font: $font;
-            font-weight: bold;
-            margin: 0; 
-        }
-    }
+@import "variables";
+@import "mixins/clearfix";
+@import "mixins/compare-styles";
 
 /*** STYLES ***/
 .vlocity {
+    .modal-content {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.vlcCompareModal {
     * {
         transition: all 100ms ease-in;
     }
@@ -121,13 +20,7 @@
         &:hover, &:active, &:focus, &:visited {
             text-decoration: none;
         }
-    }
-
-    .modal-content {
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-    }
+    }    
 
     .modal-header {
         border: none;
@@ -240,7 +133,7 @@
 
                         .currency-symbol {
                             position: relative;
-                            left: 4px;
+                            left: 3px;
                         }
                     }
 
@@ -249,7 +142,7 @@
                             content: "%";
                             display: inline;
                             position: relative;
-                            left: -4px;
+                            left: -3px;
                         }
                     }
                 }
@@ -317,8 +210,4 @@
     }
 
     @include compareStyles();
-
-    &.hphc {
-        @include compareStyles($hphc-font-regular, $hphc-modal-bg, $hphc-icon-color, $hphc-outer-border, $hphc-inner-border);
-    }
 }

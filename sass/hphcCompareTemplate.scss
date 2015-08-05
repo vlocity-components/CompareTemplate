@@ -1,0 +1,9 @@
+@import "variables";
+@import "mixins/clearfix";
+@import "mixins/compare-styles";
+
+.vlcCompareModal {
+    &.hphc {
+        @include compareStyles($hphc-font-regular, $hphc-modal-bg, $hphc-icon-color, $hphc-outer-border, $hphc-inner-border);
+    }
+}

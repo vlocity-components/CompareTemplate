@@ -10,46 +10,49 @@
     <script src="js/controllers.js"></script>
     <link rel="stylesheet" href="via_design/css/vlocity.css" />
     <link rel="stylesheet" href="css/CompareTemplate.css" />
+    <link rel="stylesheet" href="css/hphcCompareTemplate.css" />
 </head>
 
-<body class="vlocity hphc" ng-controller="compareController">
+<body class="vlocity" ng-controller="compareController">
     <div class="container">
         <button class="btn btn-default" ng-click="open('lg')">Compare</button>
     </div>
-    <script type="text/ng-template" id="CompareModalTemplate.html">
-        <div class="modal-header form-inline">
-            <div class="form-group">
-                <label for="compareSelect" class="modal-title">Compare Plans</label>
-                <select id="compareSelect" ng-model="selectedCC" class="form-control" ng-options="category for category in categoryList" ng-change="selectedItemChanged(selectedCC)">
-                    <option value="">All</option>
-                </select>
+    <script type="text/ng-template" id="vlcCompareModal.html">
+        <div class="vlcCompareModal hphc">
+            <div class="modal-header form-inline">
+                <div class="form-group">
+                    <label for="compareSelect" class="modal-title">Compare Plans</label>
+                    <select id="compareSelect" ng-model="selectedCC" class="form-control" ng-options="category for category in categoryList" ng-change="selectedItemChanged(selectedCC)">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <i class="icon icon-v-close-circle-line pull-right" ng-click="cancel()"></i>
             </div>
-            <i class="icon icon-v-close-circle-line pull-right" ng-click="cancel()"></i>
-        </div>
-        <div class="modal-body">
-            <div class="table-wrapper">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th ng-repeat="product in productList"><h2>{{product.name}}</h2></th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
-                    <tr class="attr-category">
-                        <td ng-attr-colspan="{{productList.length + 1}}">
-                            <h3>{{category}}</h3>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
-                        <td>{{key}}</td>
-                        <td ng-repeat="product in productList track by $index" class="{{attributesValueForProduct(product.code,category,key).dataType.toLowerCase()}}" ng-class="{'no-currency-symbol': !currencySymbol}">
-                            <span ng-if="attributesValueForProduct(product.code,category,key).dataType === 'Currency' && currencySymbol" class="currency-symbol">{{currencySymbol}}</span>
-                            <span>{{attributesValueForProduct(product.code,category,key).value }}</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="modal-body">
+                <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th ng-repeat="product in productList"><h2>{{product.name}}</h2></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="category in categoryList" ng-if="showCategory(category)">
+                        <tr class="attr-category">
+                            <td ng-attr-colspan="{{productList.length + 1}}">
+                                <h3>{{category}}</h3>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="(key,value) in categoryMap[category]['attributes'] track by $index">
+                            <td>{{key}}</td>
+                            <td ng-repeat="product in productList track by $index" class="{{attributesValueForProduct(product.code,category,key).dataType.toLowerCase()}}" ng-class="{'no-currency-symbol': !currencySymbol}">
+                                <span ng-if="attributesValueForProduct(product.code,category,key).dataType === 'Currency' && currencySymbol" class="currency-symbol">{{currencySymbol}}</span>
+                                <span>{{attributesValueForProduct(product.code,category,key).value }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             </div>
         </div>
     </script>

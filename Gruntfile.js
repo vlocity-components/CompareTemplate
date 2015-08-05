@@ -21,7 +21,8 @@ module.exports = function(grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'css/CompareTemplate.css': 'sass/CompareTemplate.scss'
+                    'css/CompareTemplate.css': 'sass/CompareTemplate.scss',
+                    'css/hphcCompareTemplate.css': 'sass/hphcCompareTemplate.scss'
                 }
             }
         },

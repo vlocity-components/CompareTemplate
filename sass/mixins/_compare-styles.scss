@@ -1,0 +1,67 @@
+@mixin compareStyles(
+        $font: $font-regular, 
+        $modal-bg: $light-gray, 
+        $icon-color: $light-blue, 
+        $outer-border: $middle-dark-gray, 
+        $inner-border: $middle-light-gray) 
+    {
+        * {
+            font: $font;
+        }
+
+        .modal-header {
+            background: $modal-bg;
+
+            i.icon {
+                color: $icon-color;
+
+                &:hover {
+                    color: darken($icon-color, 7%);
+                }
+            }
+        }
+
+        .modal-body {
+            background: $modal-bg;
+        }
+
+        .table-wrapper {
+            border: 1px solid $outer-border;
+        }
+
+        table.table {
+            thead {
+                tr {
+                    th {
+                        border-color: $inner-border;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    &.attr-category {
+                        td {
+                            background: $modal-bg;
+                        }
+                    }
+
+                    td {
+                        border-color: $inner-border;
+                    }
+                }
+            }            
+        }
+
+        label.modal-title, h2 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            line-height: 28px;        
+        }
+
+        h3 {
+            font: $font;
+            font-weight: bold;
+            margin: 0; 
+        }
+    }
