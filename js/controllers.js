@@ -4,6 +4,21 @@
 
 var bpModule = angular.module("compare", ['ui.bootstrap']);
 
+bpModule.directive('equalHeight', function($timeout) {
+    function link(scope, element, attrs) {
+        $timeout(function() {
+            scope.style = {
+                height: element[0].offsetHeight + 'px'
+            };
+            console.log(element);
+        },100);
+    }
+    return {
+        restrict: 'AE',
+        link: link
+    };
+});
+
 bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.control = {
         "vlcSI": {
@@ -202,20 +217,26 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     };
     $scope.currencySymbol = "";
     $scope.currencyCode = $scope.control.vlcSI.currencyCode;
-    $scope.currencyMap = [
-        {"USD": "$"},
-        {"CAD": "$"},
-        {"EUR": "€"},
-        {"GBP": "£"},
-        {"JPY": "¥"},
-        {"KRW": "₩"},
-        {"CNY": "元"}
-    ];
+    $scope.currencyMap = [{
+        "USD": "$"
+    }, {
+        "CAD": "$"
+    }, {
+        "EUR": "€"
+    }, {
+        "GBP": "£"
+    }, {
+        "JPY": "¥"
+    }, {
+        "KRW": "₩"
+    }, {
+        "CNY": "元"
+    }];
 
     $scope.getCurrencySymbol = function(code) {
         var currencySymbol = "";
         $scope.currencyMap.forEach(function(item) {
-            if(item[code] !== undefined) {
+            if (item[code] !== undefined) {
                 currencySymbol = item[code];
             }
         });
@@ -243,7 +264,7 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
         });
 
         modalInstance.result.then(function(selectedItem) {
-            $scope.selected = selectedItem;            
+            $scope.selected = selectedItem;
         }, function() {
             $log.info('Modal dismissed at: ' + new Date());
         });
@@ -253,7 +274,7 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
 bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content, currencySymbol, currencyCode) {
     $scope.categoryList = [];
     $scope.categoryMap = {};
-    $scope.productList = []; 
+    $scope.productList = [];
     $scope.currencySymbol = currencySymbol;
     $scope.currencyCode = currencyCode;
 
@@ -282,7 +303,10 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
                     $scope.categoryList.push(categoryName);
                     var attributeMap = {};
                     var productAssignmentMap = {};
-                    productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
+                    productAssignmentMap[product['code']] = {
+                        "value": attributeValue,
+                        "dataType": attributeDataType
+                    };
                     attributeMap['assignmentValues'] = productAssignmentMap;
                     attributeMap['name'] = attributeName;
                     $scope.categoryMap[categoryName] = {};
@@ -292,11 +316,17 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
                     var attributeMap = $scope.categoryMap[categoryName]['attributes'][attributeName];
                     if (attributeMap != null) {
                         var productAssignmentMap = attributeMap['assignmentValues'];
-                        productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
+                        productAssignmentMap[product['code']] = {
+                            "value": attributeValue,
+                            "dataType": attributeDataType
+                        };
                     } else {
                         attributeMap = {};
                         var productAssignmentMap = {};
-                        productAssignmentMap[product['code']] = {"value": attributeValue, "dataType": attributeDataType};
+                        productAssignmentMap[product['code']] = {
+                            "value": attributeValue,
+                            "dataType": attributeDataType
+                        };
                         attributeMap['assignmentValues'] = productAssignmentMap;
                         attributeMap['name'] = attributeName;
                         $scope.categoryMap[categoryName]['attributes'][attributeName] = attributeMap;

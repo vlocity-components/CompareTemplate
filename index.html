@@ -19,9 +19,9 @@
         <div class="controls-container">
             <button class="btn btn-default" ng-click="open('lg')">Compare</button>
         </div>
-        <div class="products-container">
-            <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected}">
-                <div class="top-container" ng-class="{'recommended': p.ProductRecommend}">
+        <div class="products-container" equal-height="true">
+            <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-style="style">
+                <div class="top-container">
                     <h1>{{p.ProductName}}</h1>
                     <span class="subtotal">
                     <sup>{{currencySymbol}}</sup>
