@@ -22,7 +22,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'css/CompareTemplate.css': 'sass/CompareTemplate.scss',
-                    'css/hphcCompareTemplate.css': 'sass/hphcCompareTemplate.scss'
+                    'css/hphcCompareTemplate.css': 'sass/hphcCompareTemplate.scss',
+                    'css/SelectableList.css': 'sass/SelectableList.scss'
                 }
             }
         },
