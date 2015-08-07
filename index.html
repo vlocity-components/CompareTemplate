@@ -23,23 +23,33 @@
             <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-style="style">
                 <div class="top-container">
                     <h1>{{p.ProductName}}</h1>
-                    <span class="subtotal">
-                    <sup>{{currencySymbol}}</sup>
-                <span class="num price-format">{{p.TotalPrice}}</span>
-                    </span>
+                    <div class="subtotal">
+                        <sup>{{currencySymbol}}</sup>
+                        <span class="num price-format">{{formatPrice(p.TotalPrice)}}</span>
+                        <span class="label-text">Monthly Premium</span>
+                    </div>
                     <button class="form-control"><span>Select Plan</span></button>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="p.vlcCompSelected" ng-change="onCompSelectItem(control)" ng-disabled="control.compDisable && !p.vlcCompSelected">
+                            Compare
+                        </label>
+                    </div>
                 </div>
                 <div class="attributes-container">
                     <ul>
                         <li ng-repeat="attribute in p.attributes | filter: { description: 'Key' }">
                             <strong>{{attribute.name}}</strong>
-                            <p>{{attribute.value}}</p>
-                        </li>                        
+                            <p class="{{attribute.dataType.toLowerCase()}}">
+                                <span class="currency-symbol" ng-if="attribute.dataType === 'Currency'">{{currencySymbol}}</span>
+                                <span>{{attribute.value}}</span>
+                            </p>
+                        </li>
                     </ul>
                 </div>
             </section>
         </div>
-    </div>    
+    </div>
     <script type="text/ng-template" id="vlcCompareModal.html">
         <div class="vlocity vlcCompareModal hphc">
             <div class="modal-header form-inline">

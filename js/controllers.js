@@ -233,6 +233,10 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
         "CNY": "元"
     }];
 
+    $scope.formatPrice = function(price) {
+        return parseFloat(price).toFixed(2);
+    };
+
     $scope.getCurrencySymbol = function(code) {
         var currencySymbol = "";
         $scope.currencyMap.forEach(function(item) {
