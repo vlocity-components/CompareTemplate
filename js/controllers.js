@@ -4,20 +4,57 @@
 
 var bpModule = angular.module("compare", ['ui.bootstrap']);
 
-bpModule.directive('equalHeight', function($timeout) {
-    function link(scope, element, attrs) {
-        $timeout(function() {
-            scope.style = {
-                height: element[0].offsetHeight + 'px'
-            };
-            console.log(element);
-        },100);
-    }
+bpModule.directive('equalizeHeight', ['$timeout', function($timeout) {
     return {
-        restrict: 'AE',
-        link: link
+        restrict: 'A',
+        controller: function($scope) {
+            //console.log('equalizeHeightFor - controller');
+            var elements = [];
+            this.addElement = function(element) {
+                //console.log('adding element:', element);
+                elements.push(element);
+                //console.log(elements);
+            }
+
+            // resize elements once the last element is found
+            this.resize = function() {
+                $timeout(function() {
+                    //console.log('finding the tallest ...');
+                    // find the tallest
+                    var tallest = 0,
+                        height;
+                    angular.forEach(elements, function(el) {
+                        height = el[0].offsetHeight;
+                        //console.log('height:', height);
+                        if (height > tallest)
+                            tallest = height;
+                    });
+                    //console.log('tallest:', tallest);
+                    //console.log('resizing ...');
+                    // resize
+                    angular.forEach(elements, function(el) {
+                        el[0].style.height = tallest + 'px';
+                    });
+                    //console.log('-- finished --');
+                }, 0);
+            };
+        }
     };
-});
+}]);
+
+bpModule.directive('equalizeHeightAdd', [function($timeout) {
+    return {
+        restrict: 'A',
+        require: '^^equalizeHeight',
+        link: function(scope, element, attrs, ctrl_for) {
+            //console.log('equalizeHeightAdd - link');
+            // add element to list of elements
+            ctrl_for.addElement(element);
+            if (scope.$last)
+                ctrl_for.resize();
+        }
+    };
+}]);
 
 bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.control = {
@@ -69,7 +106,10 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
                 "ChildPrice": "3.4",
                 "AdultPrice": "7.5",
                 "ID": "0",
-                "vlcSelected": true
+                "vlcSelected": true,
+                "ProductType": "Medical",
+                "ProductSubType": "HMO",
+                "MarketSegment": "North"
             }, {
                 "attributes": [{
                     "categoryName": "Deductible",
@@ -116,7 +156,10 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
                 "TotalPrice": "12.9",
                 "ChildPrice": "1.2",
                 "AdultPrice": "2.75",
-                "ID": "1"
+                "ID": "1",
+                "ProductType": "Medical",
+                "ProductSubType": "HMO",
+                "MarketSegment": "South"
             }, {
                 "attributes": [{
                     "categoryName": "Deductible",
@@ -151,13 +194,16 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
                 "NumDays": "1",
                 "ProductName": "Tiered Copayment HMO 500",
                 "ProductRecommend": false,
-                "ProductCode": "TI-NE",
+                "ProductCode": "TI-SE",
                 "NumChildren": "2",
                 "NumAdults": "2",
                 "TotalPrice": "10.1",
                 "ChildPrice": "0.8",
                 "AdultPrice": "1.75",
-                "ID": "2"
+                "ID": "2",
+                "ProductType": "Medical",
+                "ProductSubType": "HMO",
+                "MarketSegment": "East"
             }, {
                 "attributes": [{
                     "categoryName": "Deductible",
@@ -189,7 +235,7 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
                     "dataType": "Text",
                     "name": "Emergency Medical",
                     "value": "Included",
-                    "description": "Monkey"
+                    "description": "Key"
                 }, {
                     "categoryName": "Features",
                     "dataType": "Text",
@@ -203,18 +249,82 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
                 }],
                 "AdultPrice": 1.75,
                 "ChildPrice": 0.8,
-                "ID": "0",
+                "ID": "3",
                 "NumAdults": 2,
                 "NumChildren": 2,
                 "NumDays": 1,
                 "ProductCode": "TI-NE",
                 "ProductName": "Non-Emergency Medical",
-                "TotalPrice": 10.1
+                "TotalPrice": 10.1,
+                "ProductType": "Medical",
+                "ProductSubType": "PPO",
+                "MarketSegment": "North"
+            }, {
+                "attributes": [{
+                    "categoryName": "Deductible",
+                    "dataType": "Percent",
+                    "name": "In Network",
+                    "value": "50",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Deductible",
+                    "dataType": "Percent",
+                    "name": "In Network",
+                    "value": "50",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Deductible",
+                    "dataType": "Currency",
+                    "name": "In Network Individual",
+                    "value": "60",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Deductible",
+                    "dataType": "Currency",
+                    "name": "Out of Network",
+                    "value": "30",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Features",
+                    "dataType": "Currency",
+                    "name": "Baggage Loss, Delay & Damage",
+                    "value": "40",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Features",
+                    "dataType": "Text",
+                    "name": "Emergency Medical",
+                    "value": "Included",
+                    "description": "Key"
+                }, {
+                    "categoryName": "Features",
+                    "dataType": "Text",
+                    "name": "Flight & Travel Accident",
+                    "value": "Included"
+                }, {
+                    "categoryName": "Features",
+                    "dataType": "Text",
+                    "name": "Trip Cancellation & Interruption",
+                    "value": "Not Included"
+                }],
+                "AdultPrice": 1.75,
+                "ChildPrice": 0.8,
+                "ID": "4",
+                "NumAdults": 2,
+                "NumChildren": 2,
+                "NumDays": 1,
+                "ProductCode": "TI-NW",
+                "ProductName": "PPO CA 35",
+                "TotalPrice": 10.1,
+                "ProductType": "Dental",
+                "ProductSubType": "PPO",
+                "MarketSegment": "North"
             }],
             "error": "OK",
-            "currencyCode": "GBP"
+            "currencyCode": "EUR"
         }
     };
+    $scope.carouselWidth = "width:" + parseInt(($scope.control.vlcSI.recSet.length * 222)+20) + "px";
     $scope.currencySymbol = "";
     $scope.currencyCode = $scope.control.vlcSI.currencyCode;
     $scope.currencyMap = [{
@@ -232,6 +342,37 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     }, {
         "CNY": "元"
     }];
+
+    $scope.getSelectValues = function(filter_type) {
+        var products = $scope.control.vlcSI['recSet'],
+            selectArray = [];
+        for(var i = 0; i < products.length; i++) {
+            var inSelectArray = false;
+            for(var j = 0; j < selectArray.length; j++) {
+                if(selectArray[j] === products[i][filter_type]) {
+                    inSelectArray = true;
+                }
+            }
+            if(!inSelectArray) {
+                selectArray.push(products[i][filter_type]);
+            }
+        }
+        return selectArray;
+    };
+    $scope.productTypes = $scope.getSelectValues("ProductType");
+    $scope.productSubTypes = $scope.getSelectValues("ProductSubType");
+    $scope.marketSegment = $scope.getSelectValues("MarketSegment");
+
+    $scope.showProduct = function(product) {
+        return ($scope.filteredProduct === null || $scope.filteredProduct === undefined ||
+            product.ProductType === $scope.filteredProduct ||
+            product.ProductSubType === $scope.filteredProduct ||
+            product.MarketSegment === $scope.filteredProduct);
+    };
+
+    $scope.filterChanged = function(data) {
+        $scope.filteredProduct = data;
+    };
 
     $scope.formatPrice = function(price) {
         return parseFloat(price).toFixed(2);
@@ -272,6 +413,51 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
         }, function() {
             $log.info('Modal dismissed at: ' + new Date());
         });
+    };
+
+    // user click - user selects one item in Selectable Items (container)
+    // @param
+    // control - Element
+    // option - the item selected
+    // index - index of the selected item
+    // scp - Element scope
+    $scope.onSelectItem = function(control, option, index, scp, bFlip)
+    {
+        if(control === undefined || control === null || option === undefined || option === null)
+            return;
+        // multi-select, single select
+        var bSetVal = true;
+        var response = [];
+        if(bFlip)
+        {
+            if(option.vlcSelected === undefined || option.vlcSelected === null)
+            {
+                option.vlcSelected = bSetVal;
+            }
+            else
+            {
+                bSetVal = !option.vlcSelected;
+                option.vlcSelected = bSetVal;
+            }
+        }
+
+        // update 'Selectable Items' response
+        var recSet = control.vlcSI[control.itemsKey];
+        for(var i=0; i<recSet.length; i++)
+        {
+            if(i !== index && bSetVal && control.propSetMap.selectMode === 'Single')
+                 recSet[i].vlcSelected = false;
+            if(recSet[i].vlcSelected === true)
+                response.push(recSet[i]);
+        }
+
+        if(response.length > 0)
+            control.response = response;
+        else
+            control.response = null;
+
+        if(control.propSetMap.dataJSON === true)
+            scp.aggregate(scp, control.index, control.indexInParent, true, -1);
     };
 });
 

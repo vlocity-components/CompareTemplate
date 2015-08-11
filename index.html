@@ -15,39 +15,65 @@
 </head>
 
 <body class="vlocity" ng-controller="compareController as cc">
-    <div class="container">
-        <div class="controls-container">
-            <button class="btn btn-default" ng-click="open('lg')">Compare</button>
+    <div class="outer-container">
+        <div class="container-fluid">
+            <div class="row form-inline form-group">
+                <div class="col-sm-3">
+                    <label for="productType" class="filter-title">Product Type: </label>
+                    <select id="productType" ng-model="filters.ProductType" class="form-control" ng-options="item as item for item in productTypes" ng-change="filterChanged(filters.ProductType)">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="productSubType" class="filter-title">Product Sub-Type: </label>
+                    <select id="productSubType" ng-model="filters.ProductSubType" class="form-control" ng-options="item as item for item in productSubTypes" ng-change="filterChanged(filters.ProductSubType)">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="marketSegment" class="filter-title">Market Segment: </label>
+                    <select id="marketSegment" ng-model="filters.MarketSegment" class="form-control" ng-options="item as item for item in marketSegment" ng-change="filterChanged(filters.MarketSegment)">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-default" ng-click="open('lg')">Compare</button>
+                </div>
+            </div>            
         </div>
-        <div class="products-container" equal-height="true">
-            <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-style="style">
-                <div class="top-container">
-                    <h1>{{p.ProductName}}</h1>
-                    <div class="subtotal">
-                        <sup>{{currencySymbol}}</sup>
-                        <span class="num price-format">{{formatPrice(p.TotalPrice)}}</span>
-                        <span class="label-text">Monthly Premium</span>
+        <div class="scroll-container">
+            <div class="products-container" style="{{carouselWidth}}" equalize-height="true">
+                <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-show="showProduct(p)">
+                    <div class="top-container">
+                        <h1>{{p.ProductName}}</h1>
+                        <div class="subtotal">
+                            <sup>{{currencySymbol}}</sup>
+                            <span class="num price-format">{{formatPrice(p.TotalPrice)}}</span>
+                            <span class="label-text">Monthly Premium</span>
+                        </div>
+                        <button class="form-control" ng-click="onSelectItem(control, p, $index, this, true)">
+                            <span ng-hide="p.vlcSelected">Select Plan</span>
+                            <span ng-show="p.vlcSelected" class="selected"><i class="icon icon-v-check"></i>Selected</span>
+                        </button>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="p.vlcCompSelected" ng-change="onCompSelectItem(control)" ng-disabled="control.compDisable && !p.vlcCompSelected"> Compare
+                            </label>
+                        </div>
                     </div>
-                    <button class="form-control"><span>Select Plan</span></button>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="p.vlcCompSelected" ng-change="onCompSelectItem(control)" ng-disabled="control.compDisable && !p.vlcCompSelected">
-                            Compare
-                        </label>
+                    <div class="attributes-container" equalize-height-add="true">
+                        <ul>
+                            <li ng-repeat="attribute in p.attributes | filter: { description: 'Key' }">
+                                <strong>{{attribute.name}}</strong>
+                                <p class="{{attribute.dataType.toLowerCase()}}">
+                                    <span class="currency-symbol" ng-if="attribute.dataType === 'Currency'">{{currencySymbol}}</span>
+                                    <span>{{attribute.value}}</span>
+                                </p>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="attributes-container">
-                    <ul>
-                        <li ng-repeat="attribute in p.attributes | filter: { description: 'Key' }">
-                            <strong>{{attribute.name}}</strong>
-                            <p class="{{attribute.dataType.toLowerCase()}}">
-                                <span class="currency-symbol" ng-if="attribute.dataType === 'Currency'">{{currencySymbol}}</span>
-                                <span>{{attribute.value}}</span>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
     <script type="text/ng-template" id="vlcCompareModal.html">

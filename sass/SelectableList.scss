@@ -10,15 +10,22 @@
 }
 
 .vlocity {
+    .scroll-container {
+        margin: 10px;
+        overflow-x: scroll;
+        background-color: #ededed;
+        border: 1px solid $mid-gray;
+        padding: 0 0 10px 20px;
+    }
     .products-container {
         @include clearfix;
-        margin: 30px 0;
+        padding-right: 20px;
     }
     section.selectable {
         width: 210px;
         background: white;
         box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
-        margin: 0 6px;
+        margin: 30px 6px 20px 6px;
         float: left;
         border: 1px solid #ededed;
         .top-container {
@@ -42,9 +49,12 @@
             display: block;
             margin: 10px 0 15px;
             text-align: center;
+            position: relative;
             sup {
+                position: absolute;
                 font-size: 14px;
-                top: -13px;
+                top: 14px;
+                margin-left: -10px;
             }
             span {
                 &.num {
@@ -120,7 +130,7 @@
         }
         .attributes-container {
             background-color: white;
-            padding: 10px 10px 15px;
+            padding: 10px;
             position: relative;
             border: 1px solid white;
             border-top: none;
@@ -139,6 +149,8 @@
             ul {
                 list-style: none;
                 padding: 0;
+                margin: 0;
+
                 li {
                     text-align: center;
                     p {
@@ -148,6 +160,12 @@
                                 display: inline;
                                 position: relative;
                                 left: -3px;
+                            }
+                        }
+                        &.currency {
+                            .currency-symbol {
+                                position: relative;
+                                left: 2px;
                             }
                         }
                     }
@@ -267,6 +285,18 @@
                     }
                 }
             }
+            &.vlc-selectableitem-selected {
+                .top-container {
+                    .checkbox {
+                        input[type=checkbox] {
+                            border: 1px solid #aeaeae
+                        }
+                        label {
+                            color: #aeaeae;
+                        }
+                    }
+                }
+            }
         }
         &.vlc-selectableitem-selected {
             .top-container,
@@ -315,54 +345,37 @@
             button.form-control {
                 background-color: #22AA55;
                 border-color: #22AA55;
-                text-indent: 120%;
                 white-space: nowrap;
                 overflow: hidden;
                 position: relative;
                 box-shadow: none;
                 span {
                     color: white;
-                    &:before {
-                        content: "\e809";
-                        font-family: "fontello";
-                        font-style: normal;
-                        font-size: 17px;
-                        font-weight: normal;
-                        speak: none;
-                        display: inline-block;
-                        text-decoration: inherit;
-                        width: 1em;
-                        margin-right: 0.2em;
-                        text-align: center;
-                        font-variant: normal;
-                        text-transform: none;
-                        line-height: 1em;
-                        margin-left: 0.2em;
-                        position: absolute;
-                        left: 19%;
-                        top: 7px;
-                        z-index: 1;
-                        text-indent: initial;
+
+                    &.selected {
+                        padding-left: 15px;
                     }
-                    &:after {
-                        content: "Selected";
-                        line-height: 16px;
-                        position: absolute;
-                        left: 0;
-                        padding-left: 18px;
-                        z-index: 1;
-                        text-indent: initial;
-                        width: 100%;
+                    i.icon {
+                        &:before {
+                            color: white;
+                            font-size: 17px;
+                            position: absolute;
+                            left: 19%;
+                            top: 7px;
+                            z-index: 1;
+                            text-indent: initial;                            
+                        }
+
+                        &:hover {
+                            &:before {
+                                content: "\e842";                                
+                            }
+                        }
                     }
                 }
                 &:hover {
                     background-color: darken(#22AA55, 5%);
                     border-color: darken(#22AA55, 5%);
-                    span {
-                        &:before {
-                            content: "\e842";
-                        }
-                    }
                 }
             }
         }
