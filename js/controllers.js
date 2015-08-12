@@ -362,16 +362,26 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.productTypes = $scope.getSelectValues("ProductType");
     $scope.productSubTypes = $scope.getSelectValues("ProductSubType");
     $scope.marketSegment = $scope.getSelectValues("MarketSegment");
-
-    $scope.showProduct = function(product) {
-        return ($scope.filteredProduct === null || $scope.filteredProduct === undefined ||
-            product.ProductType === $scope.filteredProduct ||
-            product.ProductSubType === $scope.filteredProduct ||
-            product.MarketSegment === $scope.filteredProduct);
-    };
+    $scope.filters = {"ProductType": null, "ProductSubType": null, "MarketSegment": null};
 
     $scope.filterChanged = function(data) {
+        console.log($scope.filters);
         $scope.filteredProduct = data;
+    };
+
+    $scope.showProduct = function(product) {
+        var filters = $scope.filters,
+            shown = true;
+        if(filters.ProductType !== null && filters.ProductType !== product.ProductType) {
+            shown = false;
+        }
+        if(filters.ProductSubType !== null && filters.ProductSubType !== product.ProductSubType) {
+            shown = false;
+        }
+        if(filters.MarketSegment !== null && filters.MarketSegment !== product.MarketSegment) {
+            shown = false;
+        }
+        return shown;
     };
 
     $scope.formatPrice = function(price) {
