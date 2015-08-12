@@ -60,268 +60,510 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.control = {
         "vlcSI": {
             "recSet": [{
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "4000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible",
-                    "description": "Key"
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "40",
+                        "dataType": "Currency",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "Included",
+                        "dataType": "Text"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "50",
+                        "description": "Key",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "30",
+                        "dataType": "Currency"
+                    }],
+                    "ProductCode": "TI-NE",
+                    "ProductName": "Non-Emergency Medical",
+                    "MarketSegment": "Individual;Medicare",
+                    "ProductType": "Medical",
+                    "ProductSubType": "EPO",
+                    "TotalPremium": 12.50,
+                    "ID": "0"
                 }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Percent",
-                    "name": "Primary Care Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Currency",
-                    "name": "Speciality Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Non-Physican Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Another Name"
+                    "Age": 30,
+                    "Gender": "male",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "40",
+                        "dataType": "Currency",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "Included",
+                        "dataType": "Text"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "50",
+                        "description": "Key",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "30",
+                        "dataType": "Currency"
+                    }],
+                    "ProductCode": "TI-NE",
+                    "ProductName": "Non-Emergency Medical",
+                    "MarketSegment": "Individual;Medicare",
+                    "ProductType": "Medical",
+                    "ProductSubType": "EPO",
+                    "TotalPremium": 22.50,
+                    "ID": "1"
                 }],
-                "NumDays": "1",
-                "ProductName": "Tiered Copayment HMO 200",
-                "ProductRecommend": false,
-                "ProductCode": "TI-AI",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "26.8",
-                "ChildPrice": "3.4",
-                "AdultPrice": "7.5",
-                "ID": "0",
-                "vlcSelected": true,
-                "ProductType": "Medical",
-                "ProductSubType": "HMO",
-                "MarketSegment": "North"
+                "aggregationResults": {
+                    "TotalPrice": 30.00
+                }
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "5000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible",
-                    "description": "Key"
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "Not Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "Included",
+                        "dataType": "Text"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "40",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "100",
+                        "dataType": "Percent"
+                    }],
+                    "ProductCode": "TI-AI",
+                    "ProductName": "All-Inclusive",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 12.50,
+                    "ID": "2"
                 }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Another Type of Deductible",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Currency",
-                    "name": "Primary Care Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Currency",
-                    "name": "Speciality Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Currency",
-                    "name": "Non-Physican Office Visit"
+                    "Age": 30,
+                    "Gender": "male",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "Not Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "Included",
+                        "dataType": "Text"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "40",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "100",
+                        "dataType": "Percent"
+                    }],
+                    "ProductCode": "TI-AI",
+                    "ProductName": "All-Inclusive",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 22.50,
+                    "ID": "3"
                 }],
-                "NumDays": "1",
-                "ProductName": "Tiered Copayment HMO 250",
-                "ProductRecommend": true,
-                "ProductCode": "TI-EM",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "12.9",
-                "ChildPrice": "1.2",
-                "AdultPrice": "2.75",
-                "ID": "1",
-                "ProductType": "Medical",
-                "ProductSubType": "HMO",
-                "MarketSegment": "South"
+                "aggregationResults": {
+                    "TotalPrice": 31.00
+                }
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "value": "6000",
-                    "dataType": "Currency",
-                    "name": "Annual Deductible",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Deductible",
-                    "value": "medical deductible",
-                    "dataType": "Text",
-                    "name": "Prescription Drug Deductible",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "30",
-                    "dataType": "Percent",
-                    "name": "Primary Care Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "40",
-                    "dataType": "Percent",
-                    "name": "Speciality Office Visit",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Preventive Care",
-                    "value": "45",
-                    "dataType": "Percent",
-                    "name": "Non-Physican Office Visit"
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "Included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "Not included",
+                        "dataType": "Text",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "Not included",
+                        "dataType": "Text"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "Included",
+                        "dataType": "Text"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "40",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "100",
+                        "dataType": "Percent"
+                    }],
+                    "ProductCode": "TI-EM",
+                    "ProductName": "Emergency Medical",
+                    "MarketSegment": "Government",
+                    "ProductType": "Medical",
+                    "ProductSubType": "PPO",
+                    "TotalPremium": 12.50,
+                    "ID": "4"
                 }],
-                "NumDays": "1",
-                "ProductName": "Tiered Copayment HMO 500",
-                "ProductRecommend": false,
-                "ProductCode": "TI-SE",
-                "NumChildren": "2",
-                "NumAdults": "2",
-                "TotalPrice": "10.1",
-                "ChildPrice": "0.8",
-                "AdultPrice": "1.75",
-                "ID": "2",
-                "ProductType": "Medical",
-                "ProductSubType": "HMO",
-                "MarketSegment": "East"
+                "aggregationResults": {
+                    "TotalPrice": 32.00
+                }
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "dataType": "Percent",
-                    "name": "In Network",
-                    "value": "50"
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "40",
+                        "dataType": "Currency",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "50",
+                        "dataType": "Percent",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "50",
+                        "dataType": "Currency"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "60",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }],
+                    "ProductCode": "TI-TC",
+                    "ProductName": "Trip Cancellation",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 12.50,
+                    "ID": "6"
                 }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Percent",
-                    "name": "In Network",
-                    "value": "50"
-                }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Currency",
-                    "name": "In Network Individual",
-                    "value": "60"
-                }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Currency",
-                    "name": "Out of Network",
-                    "value": "30"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Currency",
-                    "name": "Baggage Loss, Delay & Damage",
-                    "value": "40"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Emergency Medical",
-                    "value": "Included",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Flight & Travel Accident",
-                    "value": "Included"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Trip Cancellation & Interruption",
-                    "value": "Not Included"
+                    "Age": 30,
+                    "Gender": "male",
+                    "attributes": [{
+                        "categoryName": "Features",
+                        "name": "Baggage Loss, Delay & Damage",
+                        "value": "40",
+                        "dataType": "Currency",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Emergency Medical",
+                        "value": "50",
+                        "dataType": "Percent",
+                        "description": "Key"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Flight & Travel Accident",
+                        "value": "50",
+                        "dataType": "Currency"
+                    }, {
+                        "categoryName": "Features",
+                        "name": "Trip Cancellation & Interruption",
+                        "value": "60",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Percent"
+                    }, {
+                        "name": "In Network Individual",
+                        "categoryName": "Deductible",
+                        "value": "60",
+                        "description": "Key",
+                        "dataType": "Currency"
+                    }, {
+                        "name": "Out of Network",
+                        "categoryName": "Deductible",
+                        "value": "Not Included",
+                        "dataType": "Text"
+                    }],
+                    "ProductCode": "TI-TC",
+                    "ProductName": "Trip Cancellation",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 22.50,
+                    "ID": "7"
                 }],
-                "AdultPrice": 1.75,
-                "ChildPrice": 0.8,
-                "ID": "3",
-                "NumAdults": 2,
-                "NumChildren": 2,
-                "NumDays": 1,
-                "ProductCode": "TI-NE",
-                "ProductName": "Non-Emergency Medical",
-                "TotalPrice": 10.1,
-                "ProductType": "Medical",
-                "ProductSubType": "PPO",
-                "MarketSegment": "North"
+                "aggregationResults": {
+                    "TotalPrice": 33.00
+                }
             }, {
-                "attributes": [{
-                    "categoryName": "Deductible",
-                    "dataType": "Percent",
-                    "name": "In Network",
-                    "value": "50",
-                    "description": "Key"
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "OV",
+                        "name": "Deductible",
+                        "dataType": "Text",
+                        "value": "$1000/2000"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OOPM",
+                        "dataType": "Text",
+                        "value": "$6,850/13,700"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OV",
+                        "dataType": "Text",
+                        "value": "$20/60"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "Rx Cost Share",
+                        "dataType": "Text",
+                        "value": "$15/$45/30%/40% Tiers 3 and 4 medical deductible, then coinsurance --per script maxes T3 $500 & T4: $600"
+                    }],
+                    "ProductCode": "AHMO20",
+                    "ProductName": "Affordable HMO 20",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 12.50,
+                    "ID": "8"
                 }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Percent",
-                    "name": "In Network",
-                    "value": "50",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Currency",
-                    "name": "In Network Individual",
-                    "value": "60",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Deductible",
-                    "dataType": "Currency",
-                    "name": "Out of Network",
-                    "value": "30",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Currency",
-                    "name": "Baggage Loss, Delay & Damage",
-                    "value": "40",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Emergency Medical",
-                    "value": "Included",
-                    "description": "Key"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Flight & Travel Accident",
-                    "value": "Included"
-                }, {
-                    "categoryName": "Features",
-                    "dataType": "Text",
-                    "name": "Trip Cancellation & Interruption",
-                    "value": "Not Included"
+                    "Age": 30,
+                    "Gender": "male",
+                    "attributes": [{
+                        "categoryName": "OV",
+                        "name": "Deductible",
+                        "dataType": "Text",
+                        "value": "$1000/2000"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OOPM",
+                        "dataType": "Text",
+                        "value": "$6,850/13,700"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OV",
+                        "dataType": "Text",
+                        "value": "$20/60"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "Rx Cost Share",
+                        "dataType": "Text",
+                        "value": "$15/$45/30%/40% Tiers 3 and 4 medical deductible, then coinsurance --per script maxes T3 $500 & T4: $600"
+                    }],
+                    "ProductCode": "AHMO20",
+                    "ProductName": "Affordable HMO 20",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 22.50,
+                    "ID": "9"
                 }],
-                "AdultPrice": 1.75,
-                "ChildPrice": 0.8,
-                "ID": "4",
-                "NumAdults": 2,
-                "NumChildren": 2,
-                "NumDays": 1,
-                "ProductCode": "TI-NW",
-                "ProductName": "PPO CA 35",
-                "TotalPrice": 10.1,
-                "ProductType": "Dental",
-                "ProductSubType": "PPO",
-                "MarketSegment": "North"
+                "aggregationResults": {
+                    "TotalPrice": 34.00
+                }
+            }, {
+                "calculationResults": [{
+                    "Age": 25,
+                    "Gender": "female",
+                    "attributes": [{
+                        "categoryName": "OV",
+                        "name": "Deductible",
+                        "dataType": "Text",
+                        "value": "$1250/$2500"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OOPM",
+                        "dataType": "Text",
+                        "value": "$4750/$9500"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OV",
+                        "dataType": "Text",
+                        "value": "$20/60"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "Rx Cost Share",
+                        "value": "$15/$50/30%/40% Tiers 3 and 4 medical deductible, then coinsurance --per script maxes T3 $500 & T4: $600"
+                    }],
+                    "ProductCode": "AHMO20Dental",
+                    "ProductName": "Affordable HMO 20 w/ dental",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 12.50,
+                    "ID": "10"
+                }, {
+                    "Age": 30,
+                    "Gender": "male",
+                    "attributes": [{
+                        "categoryName": "OV",
+                        "name": "Deductible",
+                        "dataType": "Text",
+                        "value": "$1250/$2500"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OOPM",
+                        "dataType": "Text",
+                        "value": "$4750/$9500"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "OV",
+                        "dataType": "Text",
+                        "value": "$20/60"
+                    }, {
+                        "categoryName": "OV",
+                        "name": "Rx Cost Share",
+                        "value": "$15/$50/30%/40% Tiers 3 and 4 medical deductible, then coinsurance --per script maxes T3 $500 & T4: $600"
+                    }],
+                    "ProductCode": "AHMO20Dental",
+                    "ProductName": "Affordable HMO 20 w/ dental",
+                    "MarketSegment": "Individual",
+                    "ProductType": "Medical",
+                    "ProductSubType": "HMO",
+                    "TotalPremium": 22.50,
+                    "ID": "11"
+                }],
+                "aggregationResults": {
+                    "TotalPrice": 35.00
+                }
             }],
             "error": "OK",
-            "currencyCode": "EUR"
+            "currencyCode": "GBP"
         }
     };
     $scope.carouselWidth = "width:" + parseInt(($scope.control.vlcSI.recSet.length * 222)+20) + "px";
@@ -344,8 +586,16 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     }];
 
     $scope.getSelectValues = function(filter_type) {
-        var products = $scope.control.vlcSI['recSet'],
+        var data = $scope.control.vlcSI['recSet'],
+            products = [],
             selectArray = [];
+
+        for(var i = 0; i < data.length; i++) {
+            var interiorData = data[i].calculationResults;
+            for(var j = 0; j < 1; j++) {
+                products.push(interiorData[j]);
+            }
+        }
         for(var i = 0; i < products.length; i++) {
             var inSelectArray = false;
             for(var j = 0; j < selectArray.length; j++) {
@@ -478,7 +728,14 @@ bpModule.controller('CompareModalCtrl', function($scope, $modalInstance, content
     };
 
     $scope.transformData = function() {
-        var products = content['recSet'];
+        var data = content['recSet'],
+            products = [];
+        for(var i = 0; i < data.length; i++) {
+            var interiorData = data[i].calculationResults;
+            for(var j = 0; j < 1; j++) {
+                products.push(interiorData[j]);
+            }
+        }
         for (var i = 0; i < products.length; i++) {
             var productAttributes = products[i];
             var product = {};
