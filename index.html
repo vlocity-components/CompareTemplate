@@ -37,13 +37,13 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-default" ng-click="open('lg')">Compare</button>
+                    <button class="btn btn-default pull-right" ng-click="open('lg')">Compare</button>
                 </div>
             </div>            
         </div>
         <div class="scroll-container">
             <div class="products-container" style="{{carouselWidth}}" equalize-height="true">
-                <section class="selectable" ng-repeat="p in control.vlcSI['recSet']" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-show="showProduct(p)">
+                <section class="selectable" ng-repeat="p in control.vlcSI['recSet'] | orderBy:p.TotalPrice:true" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-show="showProduct(p)">
                     <div class="top-container">
                         <h1>{{p.ProductName}}</h1>
                         <div class="subtotal">
