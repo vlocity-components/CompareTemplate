@@ -362,24 +362,19 @@ bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.productTypes = $scope.getSelectValues("ProductType");
     $scope.productSubTypes = $scope.getSelectValues("ProductSubType");
     $scope.marketSegment = $scope.getSelectValues("MarketSegment");
-    $scope.filters = {"ProductType": null, "ProductSubType": null, "MarketSegment": null};
+    $scope.filters = {};
 
     $scope.filterChanged = function(data) {
-        console.log($scope.filters);
         $scope.filteredProduct = data;
     };
 
     $scope.showProduct = function(product) {
         var filters = $scope.filters,
             shown = true;
-        if(filters.ProductType !== null && filters.ProductType !== product.ProductType) {
-            shown = false;
-        }
-        if(filters.ProductSubType !== null && filters.ProductSubType !== product.ProductSubType) {
-            shown = false;
-        }
-        if(filters.MarketSegment !== null && filters.MarketSegment !== product.MarketSegment) {
-            shown = false;
+        for(var prop in filters) {
+            if(filters[prop] !== null && filters[prop] !== product[prop]) {
+                shown = false;
+            }
         }
         return shown;
     };
