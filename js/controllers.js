@@ -4,57 +4,25 @@
 
 var bpModule = angular.module("compare", ['ui.bootstrap']);
 
-bpModule.directive('equalizeHeight', ['$timeout', function($timeout) {
-    return {
-        restrict: 'A',
-        controller: function($scope) {
-            //console.log('equalizeHeightFor - controller');
-            var elements = [];
-            this.addElement = function(element) {
-                //console.log('adding element:', element);
-                elements.push(element);
-                //console.log(elements);
+var tallestAttributesContainer = 0;
+bpModule.directive('equalHeight', function($timeout) {
+    function link(scope, element, attrs) {
+        $timeout(function() {
+            //console.log("offsetHeight: "+element[0].offsetHeight);
+            if(element[0].offsetHeight > tallestAttributesContainer) {
+                tallestAttributesContainer = element[0].offsetHeight;
             }
-
-            // resize elements once the last element is found
-            this.resize = function() {
-                $timeout(function() {
-                    //console.log('finding the tallest ...');
-                    // find the tallest
-                    var tallest = 0,
-                        height;
-                    angular.forEach(elements, function(el) {
-                        height = el[0].offsetHeight;
-                        //console.log('height:', height);
-                        if (height > tallest)
-                            tallest = height;
-                    });
-                    //console.log('tallest:', tallest);
-                    //console.log('resizing ...');
-                    // resize
-                    angular.forEach(elements, function(el) {
-                        el[0].style.height = tallest + 'px';
-                    });
-                    //console.log('-- finished --');
-                }, 0);
+            //console.log("tallestAttributesContainer: "+tallestAttributesContainer)
+            scope.style = {
+                height: tallestAttributesContainer + 'px'
             };
-        }
-    };
-}]);
-
-bpModule.directive('equalizeHeightAdd', [function($timeout) {
+        },0);
+    }
     return {
-        restrict: 'A',
-        require: '^^equalizeHeight',
-        link: function(scope, element, attrs, ctrl_for) {
-            //console.log('equalizeHeightAdd - link');
-            // add element to list of elements
-            ctrl_for.addElement(element);
-            if (scope.$last)
-                ctrl_for.resize();
-        }
+        restrict: 'AE',
+        link: link
     };
-}]);
+});
 
 bpModule.controller("compareController", function($scope, $modal, $log) {
     $scope.control = {

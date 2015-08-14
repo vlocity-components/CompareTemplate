@@ -42,9 +42,9 @@
             </div>            
         </div>
         <div class="scroll-container">
-            <div class="products-container" style="{{carouselWidth}}" equalize-height="true">
+            <div class="products-container" style="{{carouselWidth}}">
                 <div ng-repeat="h in control.vlcSI['recSet']">
-                    <section class="selectable" ng-repeat="p in h.calculationResults" ng-if="$first" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-show="showProduct(p)">
+                    <section class="selectable-hphc" ng-repeat="p in h.calculationResults" ng-if="$first" ng-class="{'vlc-selectableitem-selected' : p.vlcSelected, 'recommended': p.ProductRecommend}" ng-show="showProduct(p)">
                         <div class="top-container">
                             <h1>{{p.ProductName}}</h1>
                             <div class="subtotal">
@@ -63,7 +63,7 @@
                             </div>
                             <a class="external-link" href="https://mp.medimpact.com/mp/secure/LaunchProductFrameset.jsp" target="_blank">Launch Product Frameset</a>
                         </div>
-                        <div class="attributes-container" equalize-height-add="true">
+                        <div class="attributes-container" equal-height="true" ng-style="style">
                             <ul>
                                 <li ng-repeat="attribute in p.attributes | filter: { description: 'Key' }">
                                     <strong>{{attribute.name}}</strong>

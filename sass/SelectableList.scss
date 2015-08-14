@@ -11,6 +11,8 @@
 
 .vlocity {
     .outer-container {
+        width: 100%;
+        max-width: 850px;
         .row.form-inline.form-group {
             label.filter-title {
                 display: block;
@@ -18,9 +20,12 @@
             }
             select.form-control {
                 width: 100%;
+                -webkit-appearance: menulist;
+                -moz-appearance: menulist;
+                appearance: menulist;
             }
             .btn {
-                margin-top: 32px;
+                margin-top: 27px;
             }
         }
         .scroll-container {
@@ -34,7 +39,7 @@
             @include clearfix;
             padding-right: 20px;
         }
-        section.selectable {
+        section.selectable-hphc {
             width: 210px;
             background: white;
             box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
@@ -45,7 +50,7 @@
                 background-color: #F8f8f8;
                 padding-bottom: 12px;
                 border: 1px solid #F8f8f8;
-                border-bottom: none;
+                border-bottom: 1px solid #ededed;
                 transition: all 100ms ease-in;
             }
             h1 {
@@ -399,6 +404,45 @@
         &.hphc {
             * {
                 font-family: Verdana, Arial, sans-serif;
+            }
+            a {
+                color: #f18614;
+
+                &:hover {
+                    color: darken(#f18614, 10%);
+                }
+            }
+            .form-control, .btn {
+                line-height: 1.5;
+            }
+            .scroll-container {
+                background-color: darken(#EEEDE5, 4%);
+                border-color: darken(#EEEDE5, 8%);
+            }
+            section.selectable-hphc:not(.vlc-selectableitem-selected) {
+                .top-container {
+                    background-color: #EEEDE5;
+                    border-color: #EEEDE5;
+                }                
+            }
+            section.selectable-hphc {
+                border-color: darken(#EEEDE5, 8%);
+                .subtotal {
+                    margin-top: 6px;
+                    span.num {
+                        letter-spacing: -0.05em;
+                    }
+                }
+                .attributes-container {
+                    strong {
+                        line-height: 15px;
+                        margin-bottom: 2px;
+                        display: inline-block;
+                    }
+                    p span {
+                        font-size: 11px;
+                    }
+                }
             }
         }
     }
